@@ -23,8 +23,8 @@ public class View extends JPanel {
 
 	private Board board;
 
-	private Player humanPlayer;
-	private Player cpuPlayer;
+	private HumanPlayer humanPlayer;
+	private CpuPlayer cpuPlayer;
 
 
 	public View() {
@@ -40,8 +40,8 @@ public class View extends JPanel {
 		humanPlayerImage = loadImage("humanPlayer");
 		cpuPlayerImage = loadImage("cpuPlayer");
 
-		humanPlayer = new Player(0, 0);
-		cpuPlayer = new Player(height - 1, width - 1);
+		humanPlayer = new HumanPlayer(board, 0, 0);
+		cpuPlayer = new CpuPlayer(height - 1, width - 1);
 
 		update();
 	}
@@ -61,8 +61,8 @@ public class View extends JPanel {
 	}
 
 
-	private void drawImage(Graphics g, Image image, int row, int col) {
-    	g.drawImage(image, col * cellSize, row * cellSize, cellSize, cellSize, null);
+	private void drawImage(Graphics g, Image image, Player player) {
+    	g.drawImage(image, player.getCol() * cellSize, player.getRow() * cellSize, cellSize, cellSize, null);
 	}
 
 
@@ -83,8 +83,8 @@ public class View extends JPanel {
 			}
 		}
 
-		drawImage(g, humanPlayerImage, humanPlayer.getRow(), humanPlayer.getCol());
-		drawImage(g, cpuPlayerImage, cpuPlayer.getRow(), cpuPlayer.getCol());
+		drawImage(g, humanPlayerImage, humanPlayer);
+		drawImage(g, cpuPlayerImage, cpuPlayer);
 
 		/* NAO PRECISA ENTENDER A LINHA ABAIXO POR ENQUANTO */
 
