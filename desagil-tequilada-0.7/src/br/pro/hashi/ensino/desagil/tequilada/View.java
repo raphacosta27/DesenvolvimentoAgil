@@ -54,6 +54,7 @@ public class View extends JPanel {
 
 	public void update() {
 		cpuPlayer.move(0, -1);
+		repaint();
 	}
 
 
