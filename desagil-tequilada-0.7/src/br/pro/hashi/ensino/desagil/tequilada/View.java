@@ -20,11 +20,14 @@ public class View extends JPanel {
 
 	private Image humanPlayerImage;
 	private Image cpuPlayerImage;
+	private Image targetImage;
 
 	private Board board;
 
 	private HumanPlayer humanPlayer;
 	private CpuPlayer cpuPlayer;
+	
+	private Target target;
 
 
 	public View() {
@@ -39,15 +42,17 @@ public class View extends JPanel {
 
 		humanPlayerImage = loadImage("humanPlayer");
 		cpuPlayerImage = loadImage("cpuPlayer");
+		targetImage = loadImage("target");
 
 		humanPlayer = new HumanPlayer(board, 0, 0);
 		cpuPlayer = new CpuPlayer(height - 1, width - 1);
+		
+		 target = new Target(4, 14);
 
-		update();
 	}
 
 
-	private void update() {
+	public void update() {
 		cpuPlayer.move(0, -1);
 	}
 
@@ -61,8 +66,8 @@ public class View extends JPanel {
 	}
 
 
-	private void drawImage(Graphics g, Image image, Player player) {
-    	g.drawImage(image, player.getCol() * cellSize, player.getRow() * cellSize, cellSize, cellSize, null);
+	private void drawImage(Graphics g, Image image, Element element) {
+		g.drawImage(image, element.getCol() * cellSize, element.getRow() * cellSize, cellSize, cellSize, null);
 	}
 
 
@@ -85,7 +90,7 @@ public class View extends JPanel {
 
 		drawImage(g, humanPlayerImage, humanPlayer);
 		drawImage(g, cpuPlayerImage, cpuPlayer);
-
+		drawImage(g, targetImage, target);
 		/* NAO PRECISA ENTENDER A LINHA ABAIXO POR ENQUANTO */
 
 		getToolkit().sync();

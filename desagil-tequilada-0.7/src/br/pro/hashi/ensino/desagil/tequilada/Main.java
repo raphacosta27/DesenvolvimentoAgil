@@ -1,6 +1,7 @@
 package br.pro.hashi.ensino.desagil.tequilada;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 public class Main {
 	public static void main(String[] args) {
@@ -29,6 +30,11 @@ public class Main {
 
             	// Mostra a janela.
             	frame.setVisible(true);
+            	
+            	Controller controller = new Controller(view);
+            	
+            	Timer timer = new Timer(1000, controller);
+            	timer.start();
             }
         });
     }
